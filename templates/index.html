@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K12 ALU</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- <a class="navbar-brand" href="#">K12 ALU</a> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Meow</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Prediksi Banjir di hulu Sungai Yangtze</h2><br>
+                <form method="post" action="/">
+                    <button method="post" action= "/" type="submit" class="btn btn-primary">Cek Prakiraan</button>
+                </form>
+                {% if results %}
+                    <div class="mt-3">
+                        {% for area, result in results.items() %}
+                            {% if "Tidak ada" in result %}
+                                <div class="alert alert-success" role="alert">
+                                    {{ result }}
+                                </div>
+                            {% else %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ result }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">扬子江</h2>
+                        <p class="card-text">欢迎！ 请查看即将发生的洪水预报。
+                            让我们一起预防洪水吧！</p>
+                        <p>长江上游，面积近100万〖km〗^2，约占整个长江面积的56%，全长4529公里，覆盖整个长江的75%河流地区。 长江的长度。 该地区经常发生洪涝灾害。 纵观历史，特别是1870年、1954年、1998年、2010年和2016年的极端洪水事件，造成了大量人员伤亡和财产损失。 例如，2016年，整个长江流域遭受特大洪涝灾害，造成经济损失1469亿元，受灾群众近6074万人。 因此，洪水预报是长江上游现代防洪救灾的一项重要任务。</p>
+                            <br>
+                        <h2 class="card-text"><span id="current-time"></span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        setInterval(function() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            document.getElementById('current-time').innerHTML = hours + ":" + minutes + ":" + seconds;
+        }, 1000);
+    </script>
+</body>
+</html>
